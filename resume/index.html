@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/48151f61a0.js"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+    <title>Parijat's Resume</title>
+    <script type="text/javascript">
+     
+     function CreatePDFfromHTML() {
+    var HTML_Width = $(".html-content").width();
+    var HTML_Height = $(".html-content").height();
+    var top_left_margin = 15;
+    var PDF_Width = HTML_Width + (top_left_margin * 2);
+    var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+    var canvas_image_width = HTML_Width;
+    var canvas_image_height = HTML_Height;
+
+    var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+    html2canvas($(".html-content")[0]).then(function (canvas) {
+        var imgData = canvas.toDataURL("image/jpeg", 1.0);
+        var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+        pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+        for (var i = 1; i <= totalPDFPages; i++) { 
+            pdf.addPage(PDF_Width, PDF_Height);
+            pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+        }
+        pdf.save("Resume.pdf");
+        $(".html-content").hide();
+    });
+    }
+      
+    </script>
+  </head>
+
+  <body class="html-content">
+    <div class="bg-skew-one"></div>
+    <div class="bg-skew-two"></div>
+    <div class="bg-skew-three"></div>
+    <main class="resume__container">
+      <section class="resume__left">
+        <aside class="resume__left--image">
+          <img crossorigin="anonymous" class="photo" src="parijat.jpeg" alt="Parijat.jpg" />
+          <span class="name-container">
+            <span class="name-one">PARIJAT</span>
+            <span class="name-two">CHATTERJEE</span>
+            <span class="name-three">Developer</span>
+          </span>
+        </aside>
+        <div class="resume__left--lower-section">
+          <div class="resume__left--about_me">
+            <span class="section-header">ABOUT ME</span>
+            <div class="box">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo,
+                aspernatur et harum, placeat dolorem aliquam quasi ea, iure
+                impedit beatae dolores dignissimos consectetur hic dolorum
+                repellendus earum neque? Odit, dolor.
+              </p>
+            </div>
+          </div>
+          <div class="resume__left--contact">
+            <span class="section-header">CONTACT</span>
+            <div class="box">
+              <p><i class="fas fa-map-marker-alt"></i> Address</p>
+              <p><i class="fas fa-envelope-square"></i> email</p>
+              <p><i class="fas fa-phone"></i> Number</p>
+            </div>
+          </div>
+          <div class="resume__left--education">
+            <span class="section-header">LANGUAGES SPOKEN</span>
+            <div class="box box-languages">
+              <p>
+                <i class="fas fa-caret-right"></i
+                ><span class="marg-left">English</span>
+              </p>
+              <p>
+                <i class="fas fa-caret-right"></i
+                ><span class="marg-left">Hindi</span>
+              </p>
+              <p>
+                <i class="fas fa-caret-right"></i
+                ><span class="marg-left">Bengali</span>
+              </p>
+              <p>
+                <i class="fas fa-caret-right"></i
+                ><span class="marg-left">Telgue</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="resume__right">
+        <div class="resume__right--expertise">
+          <span class="section-header">SKILLS</span>
+          <div class="box box-skills">
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">Webdev </span>
+            </p>
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">Computer Vision and ML</span>
+            </p>
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">C++</span>
+            </p>
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">Flutter App Development</span>
+            </p>
+          </div>
+        </div>
+        <div class="resume__right--experience">
+          <span class="section-header">EDUCATION</span>
+          <div class="box">
+            <p>
+              <i class="fas fa-caret-right"></i
+              ><span class="marg-left">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
+                corporis, explicabo laudantium minus doloribus magnam facere
+                unde possimus in perspiciatis iste, placeat fugit, aut
+                molestias? Harum vero officia minima cum! <br />
+              </span>
+            </p>
+            <p>
+              <i class="fas fa-caret-right"></i
+              ><span class="marg-left">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia,
+                dolor? Deserunt illum repudiandae numquam atque amet ex harum
+                aspernatur saepe quas accusamus architecto repellendus iure
+                porro odit, laudantium ab ad!
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="resume__right--references">
+          <span class="references-header">PROJECTS</span>
+          <div class="box box-projects">
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">Project 1</span>
+            </p>
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">Project 1</span>
+            </p>
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">Project 1 </span>
+            </p>
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">Project 1</span>
+            </p>
+            <p>
+              <i class="far fa-circle" style="color: #b8a026"></i
+              ><span class="marg-left">Project 1</span>
+            </p>
+          </div>
+        </div>
+        <div class="resume__right--love">
+          <p class="love">
+            Made with
+            <i class="fas fa-heart" style="color: darkred;margin: 0 .5rem"></i>
+            by Parijat Chatterjee
+          </p>
+          <button id="button" onclick="CreatePDFfromHTML()">Click To Download</button>
+        </div>
+      </section>
+    </main>
+    
+  </body>
+</html>

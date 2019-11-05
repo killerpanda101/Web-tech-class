@@ -1,0 +1,148 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<style type="text/css">
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900");
+@import url("https://cdn.linearicons.com/free/1.0.0/icon-font.min.css");
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #112233;
+}
+
+.weather-card {
+  margin: 160px auto;
+  height: 570px;
+  width: 450px;
+  background: #fff;
+  box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.weather-card .top {
+  position: relative;
+  height: 570px;
+  width: 100%;
+  overflow: hidden;
+  background: url({{ images[vij['weather'][0]['main']] }}) no-repeat;
+  background-size: cover;
+  background-position: center center;
+  text-align: center;
+}
+.weather-card .top .wrapper {
+  padding: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.weather-card .top .wrapper .heading {
+  margin-top: 20px;
+  font-size: 35px;
+  font-weight: 400;
+  color: #fff;
+}
+.weather-card .top .wrapper .location {
+  margin-top: 20px;
+  font-size: 21px;
+  font-weight: 400;
+  color: #fff;
+}
+.weather-card .top .wrapper .temp {
+  margin-top: 20px;
+}
+.weather-card .top .wrapper .temp a {
+  text-decoration: none;
+  color: #fff;
+}
+.weather-card .top .wrapper .temp a .temp-type {
+  font-size: 85px;
+}
+.weather-card .top .wrapper .temp .temp-value {
+  display: inline-block;
+  font-size: 85px;
+  font-weight: 600;
+  color: #fff;
+}
+.weather-card .top .wrapper .temp .deg {
+  display: inline-block;
+  font-size: 35px;
+  font-weight: 600;
+  color: #fff;
+  vertical-align: top;
+  margin-top: 10px;
+}
+.weather-card .top:after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.weather-card.rain .top {
+  background: url({{ images[gnt['weather'][0]['main']] }}) no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.small {
+    display: inline-block;
+    font-weight: 600;
+    color: #fff;
+    font-size: 24px;
+}
+
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="weather-card one">
+                <div class="top">
+                    <div class="wrapper">
+
+                        <h1 class="heading">{{ vij['weather'][0]['description'] }}</h1>
+                        <h3 class="location">{{ vij['name'] }}, {{ vij['sys']['country'] }}</h3>
+                        <p class="temp">
+                            <span class="temp-value">{{ vij['main']['temp'] }}</span>
+                            <span class="deg">0</span>
+                            <a href="javascript:;"><span class="temp-type">F</span></a>
+                        </p>
+                        <p class="temp">
+                            <span class="small">Preasure: {{ vij['main']['pressure'] }} mm Hg</span>
+                        </p>
+                        <p class="temp">
+                            <span class="small">Humidity: {{ vij['main']['humidity'] }} %</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="weather-card rain">
+                <div class="top">
+                    <div class="wrapper">
+                        <h1 class="heading">{{ gnt['weather'][0]['description'] }}</h1>
+                        <h3 class="location">{{ gnt['name'] }}, {{ gnt['sys']['country'] }}</h3>
+                        <p class="temp">
+                            <span class="temp-value">{{ gnt['main']['temp'] }}</span>
+                            <span class="deg">0</span>
+                            <a href="javascript:;"><span class="temp-type">F</span></a>
+                        </p>
+                        <p class="temp">
+                            <span class="small">Preasure: {{ gnt['main']['pressure'] }} mm Hg</span>
+                        </p>
+                        <p class="temp">
+                            <span class="small">Humidity: {{ gnt['main']['humidity'] }} %</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
