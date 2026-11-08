@@ -69,9 +69,17 @@ else
 
 
 
+if($pw !== $cpw)
+{
+    header("Location:signup.php?err3=mismatch");
+    exit();
+}
+
+// Never store plaintext passwords: store a hash (in both columns of the existing 3-column schema)
+$hash = password_hash($pw, PASSWORD_DEFAULT);
 $q = "insert into login values (?,?,?);";
 $s = mysqli_prepare($conn,$q);
-mysqli_stmt_bind_param($s,'sss',$un,$pw,$cpw);
+mysqli_stmt_bind_param($s,'sss',$un,$hash,$hash);
 mysqli_stmt_execute($s);
 
 echo "You have successfully registered :)";
