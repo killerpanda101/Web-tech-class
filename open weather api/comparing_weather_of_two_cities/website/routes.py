@@ -1,6 +1,10 @@
 from flask import render_template, url_for, flash, redirect, request, abort, jsonify
-import json, requests
+import json, os, requests
 from website import app
+
+# Set OPENWEATHER_API_KEY in the environment; never commit keys.
+API_KEY = os.environ.get("OPENWEATHER_API_KEY", "")
+WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 images = {
           'Thunderstorm': "https://patch.com/img/cdn20/users/23195148/20190717/030412/styles/patch_image/public/thunderstorm___17150231562.jpg",
@@ -15,11 +19,11 @@ images = {
 @app.route('/')
 def home():
     vij = requests.get(
-        "http://api.openweathermap.org/data/2.5/weather?q=Amsterdam&appid=e3b51d955ccf5b1668a7ed5f68581870"
+        WEATHER_URL, params={"q": "Amsterdam", "appid": API_KEY}, timeout=10
       )
 
     gnt = requests.get(
-        "http://api.openweathermap.org/data/2.5/weather?q=Netherlands&appid=e3b51d955ccf5b1668a7ed5f68581870"
+        WEATHER_URL, params={"q": "Netherlands", "appid": API_KEY}, timeout=10
       )
     temp=json.loads(gnt.text)
     print(temp['weather'][0]['main'])
